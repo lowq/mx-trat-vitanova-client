@@ -22,7 +22,7 @@ function App() {
     if (cookies.token) {
       const decoded: any = jwt_decode(cookies.token);
       axios
-        .get(`http://localhost:8111/auth/role/${decoded.name}`, {
+        .get(`${import.meta.env.VITE_BACKEND_URL}/auth/role/${decoded.name}`, {
           headers: {
             "Content-type": "application/json; charset=utf-8",
             Authorization: `Bearer ${cookies.token}`,
@@ -49,7 +49,7 @@ function App() {
         });
       axios
         .get(
-          `http://localhost:8111/profile/userInfo/${decoded.name}/${decoded.email}`,
+          `${import.meta.env.VITE_BACKEND_URL}/profile/userInfo/${decoded.name}/${decoded.email}`,
           {
             headers: {
               "Content-type": "application/json; charset=utf-8",

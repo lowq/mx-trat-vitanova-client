@@ -32,7 +32,7 @@ const NewsList = () => {
   const fetchBlogItems = async () => {
     try {
       axios
-        .get("http://localhost:8111/news/", {
+        .get("${import.meta.env.VITE_BACKEND_URL}/news/", {
           headers: {
             Authorization: `Bearer ${cookies.token}`,
           },

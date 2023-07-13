@@ -36,7 +36,7 @@ const AddFoto: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
     try {
       axios
-        .post("http://localhost:8111/fotos/", formData, {
+        .post("${import.meta.env.VITE_BACKEND_URL}/fotos/", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${cookies.token}`,

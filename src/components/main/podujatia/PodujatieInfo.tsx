@@ -38,7 +38,7 @@ const PodujatieInfo: React.FC<ModalProps> = ({ isOpen, onClose, podujatie}) => {
 
     const fetchPodujatieInfo = () => {
         axios
-              .get(`http://localhost:8111/podujatia/${podujatieLocal.id}`, {
+              .get(`${import.meta.env.VITE_BACKEND_URL}/podujatia/${podujatieLocal.id}`, {
                 headers: {
                   Authorization: `Bearer ${cookies.token}`,
                 },
@@ -69,7 +69,7 @@ const PodujatieInfo: React.FC<ModalProps> = ({ isOpen, onClose, podujatie}) => {
         }
         try {
             axios
-              .get(`http://localhost:8111/podujatia/join/${podujatieLocal.id}`, {
+              .get(`${import.meta.env.VITE_BACKEND_URL}/podujatia/join/${podujatieLocal.id}`, {
                 headers: {
                   Authorization: `Bearer ${cookies.token}`,
                 },
@@ -89,7 +89,7 @@ const PodujatieInfo: React.FC<ModalProps> = ({ isOpen, onClose, podujatie}) => {
     const leftPodujatie = () => {
         try {
             axios
-              .get(`http://localhost:8111/podujatia/left/${podujatieLocal.id}`, {
+              .get(`${import.meta.env.VITE_BACKEND_URL}/podujatia/left/${podujatieLocal.id}`, {
                 headers: {
                   Authorization: `Bearer ${cookies.token}`,
                 },

@@ -48,7 +48,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const handleLogin = async () => {
     await axios
       .post(
-        "http://localhost:8111/auth/login",
+        "${import.meta.env.VITE_BACKEND_URL}/auth/login",
         {
           name: loginName,
           passwordHash: loginPassword,
@@ -71,7 +71,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
           );
           axios
             .get(
-              `http://localhost:8111/profile/userInfo/${decoded.name}/${decoded.email}`,
+              `${import.meta.env.VITE_BACKEND_URL}/profile/userInfo/${decoded.name}/${decoded.email}`,
               {
                 headers: {
                   "Content-type": "application/json; charset=utf-8",
@@ -100,7 +100,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     ) {
       await axios
         .post(
-          "http://localhost:8111/auth/register",
+          "${import.meta.env.VITE_BACKEND_URL}/auth/register",
           {
             email: registerEmail,
             name: registerName,

@@ -44,7 +44,7 @@ const AddPodujatie: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
     try {
       axios
-        .post("http://localhost:8111/podujatia/", formData, {
+        .post("${import.meta.env.VITE_BACKEND_URL}/podujatia/", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${cookies.token}`,
