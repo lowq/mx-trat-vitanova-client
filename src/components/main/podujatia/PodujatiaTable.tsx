@@ -19,7 +19,7 @@ const PodujatiaTable = () => {
   const fetchPodujatia = () => {
     try {
       axios
-        .get("${import.meta.env.VITE_BACKEND_URL}/podujatia/", {
+        .get(`${import.meta.env.VITE_BACKEND_URL}/podujatia/`, {
           headers: {
             Authorization: `Bearer ${cookies.token}`,
           },

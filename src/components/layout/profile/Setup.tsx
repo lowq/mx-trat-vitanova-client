@@ -53,7 +53,7 @@ const Setup: React.FC<props> = ({brands, categories, isClose}) => {
         }
 
         axios
-        .post("${import.meta.env.VITE_BACKEND_URL}/profile/userInfo", formdata, {
+        .post(`${import.meta.env.VITE_BACKEND_URL}/profile/userInfo`, formdata, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${userContext.token}`,

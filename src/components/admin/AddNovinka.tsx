@@ -56,7 +56,7 @@ const AddNovinka: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
     try {
       axios
-        .post("${import.meta.env.VITE_BACKEND_URL}/news/", formData, {
+        .post(`${import.meta.env.VITE_BACKEND_URL}/news/`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${cookies.token}`,
@@ -167,7 +167,6 @@ const AddNovinka: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                       ))}
                   </ul>
                 </div>
-
                 <div className="flex justify-end">
                   <button
                     type="submit"

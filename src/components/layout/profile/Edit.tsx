@@ -59,7 +59,7 @@ const Edit: React.FC<props> = ({brands, categories, isClose}) => {
         }
 
         axios
-        .put("${import.meta.env.VITE_BACKEND_URL}/profile/userInfo", formdata, {
+        .put(`${import.meta.env.VITE_BACKEND_URL}/profile/userInfo`, formdata, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${userContext.token}`,

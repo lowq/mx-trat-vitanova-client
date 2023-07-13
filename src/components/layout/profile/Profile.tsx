@@ -25,7 +25,7 @@ const Profile: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   useEffect(() => {
     try {
       axios
-        .get("${import.meta.env.VITE_BACKEND_URL}/profile/brands", {
+        .get(`${import.meta.env.VITE_BACKEND_URL}/profile/brands`, {
           headers: {
             Authorization: `Bearer ${userContext.token}`,
           },
@@ -36,7 +36,7 @@ const Profile: React.FC<ModalProps> = ({ isOpen, onClose }) => {
           }
         });
       axios
-        .get("${import.meta.env.VITE_BACKEND_URL}/profile/categories", {
+        .get(`${import.meta.env.VITE_BACKEND_URL}/profile/categories`, {
           headers: {
             Authorization: `Bearer ${userContext.token}`,
           },

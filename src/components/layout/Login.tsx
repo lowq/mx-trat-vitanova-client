@@ -48,7 +48,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const handleLogin = async () => {
     await axios
       .post(
-        "${import.meta.env.VITE_BACKEND_URL}/auth/login",
+        `${import.meta.env.VITE_BACKEND_URL}/auth/login`,
         {
           name: loginName,
           passwordHash: loginPassword,
@@ -100,7 +100,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     ) {
       await axios
         .post(
-          "${import.meta.env.VITE_BACKEND_URL}/auth/register",
+          `${import.meta.env.VITE_BACKEND_URL}/auth/register`,
           {
             email: registerEmail,
             name: registerName,

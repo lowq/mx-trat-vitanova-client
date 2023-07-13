@@ -32,7 +32,7 @@ const NewsList = () => {
   const fetchBlogItems = async () => {
     try {
       axios
-        .get("${import.meta.env.VITE_BACKEND_URL}/news/", {
+        .get(`${import.meta.env.VITE_BACKEND_URL}/news/`, {
           headers: {
             Authorization: `Bearer ${cookies.token}`,
           },
@@ -68,8 +68,7 @@ const NewsList = () => {
       className={`max-w-4xl mx-auto grid ${
         newsItems.length > 2 ? "grid-cols-2" : "grid-cols-1"
       }`}
-      ref={componentRef}
-    >
+      ref={componentRef}>
       {newsItems.length !== 0 ? (
         newsItems.map((newsItem, id) => (
           <div
