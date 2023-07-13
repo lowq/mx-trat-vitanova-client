@@ -8,7 +8,7 @@ const UserContext = createContext<User>({} as User)
 
 export const UserContextProvider: React.FC<{ children: JSX.Element }> = (props) => {
 
-    const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+    const [, setCookie, removeCookie] = useCookies(["token"]);
 
     const [name, setName] = useState<string>("")
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)

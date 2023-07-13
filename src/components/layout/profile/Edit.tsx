@@ -1,5 +1,4 @@
-`/* eslint-disable jsx-a11y/no-onchange */`
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import UserContext from '../../../constans/userContext'
 import { toast } from 'react-toastify';
 import axios from 'axios';

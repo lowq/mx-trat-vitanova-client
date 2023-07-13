@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import UserContext from "../../constans/userContext";
+import React, {  useRef, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useCookies } from "react-cookie";
@@ -11,10 +10,6 @@ interface ModalProps {
 
 const AddFoto: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const [cookies] = useCookies(["token"]);
-
-  const [inputOpen, setInputOpen] = useState<string>("false");
-
-  const userContext = useContext(UserContext);
 
   const [description, setDescription] = useState("");
   const [image, setImage] = useState<File | null>(null);
@@ -68,7 +63,6 @@ const AddFoto: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     <>
       <input
         checked={isOpen}
-        onChange={(e) => setInputOpen(e.target.value)}
         type="checkbox"
         id="modalOpen"
         className="modal-toggle"

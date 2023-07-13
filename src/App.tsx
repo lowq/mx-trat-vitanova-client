@@ -2,7 +2,7 @@ import "./App.css";
 import Layout from "./components/layout/Layout";
 import Main from "./components/main/Main";
 import UserContext from "./constans/userContext";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { genConfig, AvatarFullConfig } from "react-nice-avatar";
 import jwt_decode from "jwt-decode";
 import { useCookies } from "react-cookie";

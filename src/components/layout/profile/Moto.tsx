@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import UserContext from '../../../constans/userContext'
 
 const Moto = () => {

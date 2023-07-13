@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Podujatie, User } from '../../../models/podujatia'
 import UserContext from '../../../constans/userContext';
 import axios from 'axios';
@@ -55,7 +55,6 @@ const PodujatieInfo: React.FC<ModalProps> = ({ isOpen, onClose, podujatie}) => {
               });
     }
     
-    const [inputOpen, setInputOpen] = useState<string>("false");
 
     const userContext = useContext(UserContext);
 
@@ -111,7 +110,6 @@ const PodujatieInfo: React.FC<ModalProps> = ({ isOpen, onClose, podujatie}) => {
     <>
         <input
             checked={isOpen}
-            onChange={(e) => setInputOpen(e.target.value)}
             type="checkbox"
             id="modalOpen"
             className="modal-toggle"

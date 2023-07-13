@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import AddNovinka from '../components/admin/AddNovinka'
 import UserContext from '../constans/userContext';
 import AddPodujatie from '../components/admin/AddPodujatie';

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import UserContext from "../../constans/userContext";
 import { toast } from "react-toastify";
@@ -28,8 +28,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
   const [showBadPassword, setShowBadPassword] = useState<boolean>(false);
   const [showBadEmail, setShowBadEmail] = useState<boolean>(false);
-
-  const [inputOpen, setInputOpen] = useState<string>("false");
 
   const handleTabChange = () => {
     setActiveTab(!activeTab);
@@ -164,7 +162,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     <>
       <input
         checked={isOpen}
-        onChange={(e) => setInputOpen(e.target.value)}
         type="checkbox"
         id="modalOpen"
         className="modal-toggle"

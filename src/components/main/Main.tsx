@@ -1,5 +1,4 @@
-import React, {useContext, useRef, useState, useEffect} from 'react'
-import UserContext from '../../constans/userContext'
+import {useRef, useState, useEffect} from 'react'
 import NewsList from './novinky/NewsList'
 import { FaArrowUp } from 'react-icons/fa';
 import PodujatiaTable from './podujatia/PodujatiaTable';
@@ -27,8 +26,6 @@ const Main = () => {
   }, []);
 
   const targetDivRef = useRef<HTMLDivElement>(null);
-
-  const userContext = useContext(UserContext)
 
   return (
     <>

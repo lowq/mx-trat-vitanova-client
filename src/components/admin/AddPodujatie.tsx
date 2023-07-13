@@ -1,5 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
-import UserContext from "../../constans/userContext";
+import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useCookies } from "react-cookie";
@@ -11,10 +10,6 @@ interface ModalProps {
 
 const AddPodujatie: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const [cookies] = useCookies(["token"]);
-
-  const [inputOpen, setInputOpen] = useState<string>("false");
-
-  const userContext = useContext(UserContext);
 
   const [name, setName] = useState<string>("");
   const [maxCapacity, setMaxCapacity] = useState<number>(0);
@@ -76,7 +71,6 @@ const AddPodujatie: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     <>
       <input
         checked={isOpen}
-        onChange={(e) => setInputOpen(e.target.value)}
         type="checkbox"
         id="modalOpen"
         className="modal-toggle"

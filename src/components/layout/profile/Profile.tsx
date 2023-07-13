@@ -14,7 +14,6 @@ interface ModalProps {
 }
 
 const Profile: React.FC<ModalProps> = ({ isOpen, onClose }) => {
-  const [inputOpen, setInputOpen] = useState<string>("false");
   const [editProfile, setEditProfile] = useState<boolean>(false);
   const [setupProfile, setSetupProfile] = useState<boolean>(false);
 
@@ -56,7 +55,6 @@ const Profile: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     <>
       <input
         checked={isOpen}
-        onChange={(e) => setInputOpen(e.target.value)}
         type="checkbox"
         id="modalOpen"
         className="modal-toggle"

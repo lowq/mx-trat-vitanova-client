@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import moment from "moment";
 import { Podujatie } from "../../../models/podujatia";
 import PodujatieInfo from "./PodujatieInfo";

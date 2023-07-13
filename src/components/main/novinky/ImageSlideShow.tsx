@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useCookies } from 'react-cookie';
-import 'react-slideshow-image/dist/styles.css'
-import 'react-slideshow-image/dist/styles.css'
 
 interface ImageSlideshowProps {
   images: string[];
@@ -11,7 +8,6 @@ interface ImageSlideshowProps {
 const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, newName }) => {
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [cookies] = useCookies(["token"]);
   const [fotos, setFotos] = useState<string[]>([]);
 
   useEffect(() => {
