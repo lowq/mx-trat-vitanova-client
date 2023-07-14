@@ -49,7 +49,7 @@ const AddNovinka: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("date", date.toUTCString());
+    formData.append("date", date.toDateString());
     images.forEach((file) => {
       formData.append("images", file);
     });
