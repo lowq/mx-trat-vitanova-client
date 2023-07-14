@@ -42,6 +42,12 @@ const Setup: React.FC<props> = ({brands, categories, isClose}) => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
+    if(category === "") 
+    {
+        toast.warning("Nenastavil si kategóriu");
+        return;
+    }
+
     try {
         const formdata = new FormData;
         formdata.append('age', age.toString())
