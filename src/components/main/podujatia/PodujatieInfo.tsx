@@ -30,12 +30,6 @@ const PodujatieInfo: React.FC<ModalProps> = ({ isOpen, onClose, podujatie}) => {
         }
     }, [podujatie]);
 
-    useEffect(() => {
-      console.log(podujatieLocal)
-      console.log(joinedUsers)
-    }, [joinedUsers, podujatieLocal])
-    
-
     const fetchPodujatieInfo = () => {
         axios
               .get(`${import.meta.env.VITE_BACKEND_URL}/podujatia/${podujatieLocal.id}`, {
@@ -113,13 +107,14 @@ const PodujatieInfo: React.FC<ModalProps> = ({ isOpen, onClose, podujatie}) => {
             type="checkbox"
             id="modalOpen"
             className="modal-toggle"
+            readOnly
         />
         <div
             className={`modal fixed left-0 top-0 flex h-full w-full items-center justify-center`}
         >
             <div className="modal-box z-50 mx-auto w-11/12 overflow-y-auto rounded bg-neutral shadow-lg md:max-w-md">
             <div className="modal-content px-6 py-4 text-left text-primary">
-                <div className='text-xl text-center m-4 text-accent shadow-lg py-2 my-4'>
+                <div className='text-xl text-center m-4 text-primary-content shadow-lg py-2 my-4'>
                     <h1>Názov podujatia: {podujatieLocal.name}</h1>
                     <h1>Kapacita: {joinedUsers ? (joinedUsers.length) : (0) }/{podujatieLocal.maxCapacity}</h1>
                 </div>
@@ -135,8 +130,8 @@ const PodujatieInfo: React.FC<ModalProps> = ({ isOpen, onClose, podujatie}) => {
                     <tbody>
                         {joinedUsers && joinedUsers.map((user, id) => {return(
                         <tr key={id}>
-                            <th className='text-accent'>{user.name}</th>
-                            <td className='text-accent'>{user.email}</td>
+                            <th className='text-primary-content'>{user.name}</th>
+                            <td className='text-primary-content'>{user.email}</td>
                     </tr>)})}
                     
                     </tbody>
@@ -147,27 +142,27 @@ const PodujatieInfo: React.FC<ModalProps> = ({ isOpen, onClose, podujatie}) => {
                    {userContext.isLoggedIn ? (
                     <div>
                         {joined ? (
-                            <button className='btn border border-accent text-accent' onClick={leftPodujatie}>Odhlásiť sa</button>
+                            <button className='btn border border-primary-content text-primary-content' onClick={leftPodujatie}>Odhlásiť sa</button>
                         ) : (
-                            <button className='btn border border-accent text-accent' onClick={joinPodujatie}>Prihlásiť sa</button>
+                            <button className='btn border border-primary-content text-primary-content' onClick={joinPodujatie}>Prihlásiť sa</button>
                             )}
                         
                     </div>
                    
                    ) : (
                     <div>
-                        <h1 className='text-accent'>
+                        <h1 className='text-primary-content'>
                             Pre príhlásenie do preteku
                             
                         </h1>
-                        <h1 className="text-accent">
+                        <h1 className="text-primary-content">
                             sa prihlás alebo zaregistruj
                         </h1>
                     </div>
                    )}
                     
                 <div className="grow"></div>
-                <button onClick={() => onClose(true)} className='btn border border-accent text-accent'>Close</button>
+                <button onClick={() => onClose(true)} className='btn border border-primary-content text-primary-content'>Close</button>
                 </div>
             </div>
             </div>

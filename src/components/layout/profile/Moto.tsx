@@ -6,7 +6,7 @@ const Moto = () => {
   const userContext = useContext(UserContext)
 
   return (
-    <div className='m-4 text-accent text-xl'>
+    <div className='m-4 text-primary-content text-xl'>
         {userContext.userInfo && userContext.userInfo.moto && (
             <h1>Moto: {userContext.userInfo.moto.brand} {userContext.userInfo.moto.model} {userContext.userInfo.moto.year} </h1>
             )

@@ -74,12 +74,13 @@ const AddPodujatie: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         type="checkbox"
         id="modalOpen"
         className="modal-toggle"
+        readOnly
       />
       <div
         className={`modal fixed left-0 top-0 flex h-full w-full items-center justify-center`}
       >
         <div className="modal-box z-50 mx-auto w-11/12 overflow-y-auto rounded bg-neutral shadow-lg md:max-w-md">
-          <div className="modal-content px-6 py-4 text-left text-accent">
+          <div className="modal-content px-6 py-4 text-left text-primary-content">
             <div className="p-4">
               <h2 className="text-2xl font-bold mb-4">Vytvor podujatie</h2>
               <form onSubmit={handleSubmit}>
@@ -103,7 +104,7 @@ const AddPodujatie: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                   </label>
                   <textarea
                     id="description"
-                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 textarea textarea-bordered bg-primary-content text-neutral-focus"
+                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 text-neutral-focus"
                     value={description}
                     onChange={handleDescriptionChange}
                     required
@@ -116,7 +117,7 @@ const AddPodujatie: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                   </label>
                   <input
                     id="maxCapacity"
-                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 range range-accent text-neutral-focus"
+                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 range range-primary-content text-neutral-focus"
                     value={maxCapacity}
                     onChange={handleMaxCapacityChange}
                     min={0}
@@ -142,14 +143,14 @@ const AddPodujatie: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 <div className="flex justify-end">
                   <button
                     type="submit"
-                    className="btn bg-primary hover:bg-primary-focus"
+                    className="btn bg-accent hover:bg-accent-focus"
                   >
                     Create
                   </button>
                   <div className="grow"></div>
                   <button
                     onClick={() => clearData()}
-                    className="btn bg-primary hover:bg-primary-focus left-full"
+                    className="btn bg-accent hover:bg-accent-focus left-full"
                   >
                     Close
                   </button>

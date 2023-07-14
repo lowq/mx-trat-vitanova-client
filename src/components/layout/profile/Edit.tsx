@@ -63,6 +63,12 @@ const Edit: React.FC<props> = ({brands, categories, isClose}) => {
         toast.warning("Nenastavil si model moto");
         return;
     }
+    if(year === 0) 
+    {
+        toast.warning("Nenastavil si rok moto");
+        return;
+    }
+
 
     try {
         const formdata = new FormData;
@@ -106,7 +112,7 @@ const Edit: React.FC<props> = ({brands, categories, isClose}) => {
     window.location.reload()
   }
   return ( 
-    <div className="flex-row m-4 text-center text-accent">
+    <div className="flex-row m-4 text-center text-primary-content">
     <form action="">
         <div className='my-2'>
             <h1 className=' '>Age: {userContext.userInfo.age}</h1>
@@ -119,7 +125,7 @@ const Edit: React.FC<props> = ({brands, categories, isClose}) => {
                 {categories.map((item, id) => (<option  key={id}>{item}</option>))}
         </select>
         </div>
-        {addMoto ? (<button className='my-4 btn border-accent text-accent' onClick={() => setaddMoto(false)}>
+        {addMoto ? (<button className='my-4 btn border-primary-content text-primary-content' onClick={() => setaddMoto(false)}>
             Pridať motorku
         </button>) : (
             <div className='my-4'>
@@ -129,9 +135,9 @@ const Edit: React.FC<props> = ({brands, categories, isClose}) => {
                     {brands.map((item, id) => (<option key={id}>{item}</option>))}
                 </select>
                 <h1 className='my-1'>Model: </h1>
-                    <input className='w-full border border-accent bg-neutral' type="text" required onChange={handleModel} value={model}/>
+                    <input className='w-full border border-primary-content bg-neutral' type="text" required onChange={handleModel} value={model}/>
                 <h1 className='my-1'>Year: {year}</h1>
-                <input className='w-full border border-accent bg-neutral' min={1980} max={2025}  type="range"
+                <input className='w-full border border-primary-content bg-neutral' min={1980} max={2025}  type="range"
                     value={year}
                     onChange={handleYear}
                     required />
@@ -140,13 +146,13 @@ const Edit: React.FC<props> = ({brands, categories, isClose}) => {
     </form>
     <button
             onClick={handleSubmit}
-            className="m-4 btn border-accent text-accent"
+            className="m-4 btn border-primary-content text-primary-content"
             >
             Ulož
         </button>
         <button
             onClick={handleClose}
-            className="mx-4 btn border-accent text-accent"
+            className="mx-4 btn border-primary-content text-primary-content"
           >
             Close edit
           </button>

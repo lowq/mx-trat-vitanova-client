@@ -8,7 +8,7 @@ const UserInfo = () => {
   return (
     <>
     {userContext.userInfo && (
-        <div className='m-4 text-accent text-xl'>
+        <div className='m-4 text-primary-content text-xl'>
           Age: {userContext.userInfo.age}
         </div>
     )}

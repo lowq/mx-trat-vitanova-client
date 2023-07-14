@@ -58,17 +58,18 @@ const Profile: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         type="checkbox"
         id="modalOpen"
         className="modal-toggle"
+        readOnly
       />
       <div
         className={`modal fixed left-0 top-0 flex h-full w-full items-center justify-center`}
       >
-        <div className="modal-box z-50 mx-auto w-11/12 overflow-y-auto rounded bg-neutral shadow-lg md:max-w-md border border-accent">
+        <div className="modal-box z-50 mx-auto w-11/12 overflow-y-auto rounded bg-neutral shadow-lg md:max-w-md border border-primary-content">
           <div className="modal-content px-6 py-4 text-left text-primary">
-          <div className="flex m-4 text-accent border border-accent py-2 my-4 items-center justify-center">
+          <div className="flex m-4 text-primary-content border border-primary-content py-2 my-4 items-center justify-center">
                   <h1 className="text-5xl text-center mx-4 ">
                     {userContext.name}
                   </h1>
-                  <div className="border-accent rounded-full border-4">
+                  <div className="border-primary-content rounded-full border-4">
                     <Avatar
                       className="w-24 h-24"
                       {...userContext.avatarConfig}
@@ -84,13 +85,13 @@ const Profile: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                   {userContext.userInfo ? (
                   <button
                     onClick={() => setEditProfile(true)}
-                    className="mx-4 btn border border-accent text-accent"
+                    className="mx-4 btn border border-primary-content text-primary-content"
                   >
                     Edit
                   </button>
                   ) : (<button
                     onClick={() => setSetupProfile(true)}
-                    className="mx-4 btn border border-accent text-accent"
+                    className="mx-4 btn border border-primary-content text-primary-content"
                   >
                     Setup
                   </button>)}
@@ -98,7 +99,7 @@ const Profile: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                   <div className="grow"></div>
                   <button
                     onClick={() => onClose(true)}
-                    className="mx-4 btn border-accent text-accent"
+                    className="mx-4 btn border-primary-content text-primary-content"
                   >
                     Close
                   </button>

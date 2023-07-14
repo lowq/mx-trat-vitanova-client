@@ -55,15 +55,15 @@ const Admin = () => {
             {
               userContext.role === "ADMIN" && (<>
                 <div className="flex flex-col items-center">
-                  <button className="btn my-4 text-accent bg-neutral border-accent text-4xl h-24" onClick={openModalAddNovinka}>Pridaj novinku</button>
+                  <button className="btn my-4 text-primary-content bg-neutral border-primary-content text-4xl h-24" onClick={openModalAddNovinka}>Pridaj novinku</button>
                   <AddNovinka isOpen={isModalAddNovinkaOpen} onClose={closeModalAddNovinka} />
                 </div>
                 <div className="flex flex-col items-center">
-                  <button className="btn my-4 text-accent bg-neutral border-accent text-4xl h-24" onClick={openModalAddPodujatie}>Pridaj podujatie</button>
+                  <button className="btn my-4 text-primary-content bg-neutral border-primary-content text-4xl h-24" onClick={openModalAddPodujatie}>Pridaj podujatie</button>
                   <AddPodujatie isOpen={isModalAddPodujatieOpen} onClose={closeModalAddPodujatie} />
                 </div>
                 <div className="flex flex-col items-center">
-                  <button className="btn my-4 text-accent bg-neutral border-accent text-4xl h-24" onClick={openModalAddFoto}>Pridaj fotku</button>
+                  <button className="btn my-4 text-primary-content bg-neutral border-primary-content text-4xl h-24" onClick={openModalAddFoto}>Pridaj fotku</button>
                   <AddFoto isOpen={isModalAddFotoOpen} onClose={closeModalAddFoto} />
                 </div>
               </>)

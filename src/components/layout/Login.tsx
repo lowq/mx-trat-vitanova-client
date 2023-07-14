@@ -27,6 +27,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     useState<string>("");
 
   const [showBadPassword, setShowBadPassword] = useState<boolean>(false);
+  const [showLowPassword, setShowLowPassword] = useState<boolean>(false);
   const [showBadEmail, setShowBadEmail] = useState<boolean>(false);
 
   const handleTabChange = () => {
@@ -134,10 +135,21 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     }
   };
 
+  const hasNumber = (password: string): boolean => {
+    const regex = /\d/;
+    return regex.test(password);
+  }
+
   useEffect(() => {
+    
     if (registerPasswordRepeat === "") {
       setShowBadPassword(false);
     } else {
+      if(hasNumber(registerPassword)) {
+        setShowLowPassword(false)
+      } else {
+        setShowLowPassword(true)
+      }
       if (registerPassword === registerPasswordRepeat) {
         setShowBadPassword(false);
       } else {
@@ -145,6 +157,19 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
       }
     }
   }, [registerPassword, registerPasswordRepeat]);
+
+  useEffect(() => {
+    
+    if (registerPassword === "") {
+      setShowLowPassword(false);
+    } else {
+      if(hasNumber(registerPassword)) {
+        setShowLowPassword(false)
+      } else {
+        setShowLowPassword(true)
+      }
+    }
+  }, [registerPassword]);
 
   useEffect(() => {
     if (registerEmail === "") {
@@ -165,17 +190,18 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         type="checkbox"
         id="modalOpen"
         className="modal-toggle"
+        readOnly
       />
       <div
         className={`modal fixed left-0 top-0 flex h-full w-full items-center justify-center`}
       >
         <div className="modal-box z-50 mx-auto w-11/12 overflow-y-auto rounded bg-neutral shadow-lg md:max-w-md">
-          <div className="modal-content px-6 py-4 text-left text-primary">
+          <div className="modal-content px-6 py-4 text-left">
             <ul className="flex">
               <li
                 className={`-mb-px mr-1 ${
                   activeTab
-                    ? "rounded-t border-l border-r border-t text-accent-content"
+                    ? "rounded-t border-l border-r border-t text-accent"
                     : ""
                 }`}
               >
@@ -189,7 +215,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
               <li
                 className={`-mb-px mr-1 ${
                   !activeTab
-                    ? "rounded-t border-l border-r border-t text-accent-content"
+                    ? "rounded-t border-l border-r border-t text-accent"
                     : ""
                 }`}
               >
@@ -206,34 +232,34 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
               <div className="text-primary">
                 <label
                   htmlFor="login-email"
-                  className="mb-2 block font-semibold text-primary-content"
+                  className="mb-2 block font-semibold text-accent"
                 >
                   Name
                 </label>
                 <input
                   type="email"
                   id="login-email"
-                  className="mb-3 w-full rounded border border-primary-focus bg-neutral-focus px-3 py-2 text-primary-content"
+                  className="mb-3 w-full rounded border border-primary-focus bg-neutral-focus px-3 py-2 text-accent"
                   value={loginName}
                   onChange={(e) => setLoginName(e.target.value)}
                 />
 
                 <label
                   htmlFor="login-password"
-                  className="mb-2 block font-semibold text-primary-content"
+                  className="mb-2 block font-semibold text-accent"
                 >
                   Password
                 </label>
                 <input
                   type="password"
                   id="login-password"
-                  className="mb-3 w-full rounded border border-primary-focus bg-neutral-focus px-3 py-2 text-primary-content"
+                  className="mb-3 w-full rounded border border-primary-focus bg-neutral-focus px-3 py-2 text-accent"
                   value={loginPassword}
                   onChange={(e) => setLoginPassword(e.target.value)}
                 />
 
                 <button
-                  className="w-full rounded bg-primary
+                  className="w-full rounded bg-accent
                 px-4 py-2 font-bold text-accent-content hover:bg-primary-focus"
                   onClick={handleLogin}
                 >
@@ -244,7 +270,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
               <div className="text-primary">
                 <label
                   htmlFor="register-name"
-                  className="mb-2 block font-semibold text-primary-content"
+                  className="mb-2 block font-semibold text-accent"
                 >
                   Name
                 </label>
@@ -252,14 +278,14 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                   type="text"
                   id="register-name"
                   className="mb-3 w-full rounded border border-primary-focus
-                bg-neutral-focus px-3 py-2 text-primary-content"
+                bg-neutral-focus px-3 py-2 text-accent"
                   value={registerName}
                   onChange={(e) => setRegisterName(e.target.value)}
                 />
 
                 <label
                   htmlFor="register-email"
-                  className="mb-2 block font-semibold text-primary-content"
+                  className="mb-2 block font-semibold text-accent"
                 >
                   Email
                 </label>
@@ -267,7 +293,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                   type="email"
                   id="register-email"
                   className="mb-3 w-full rounded border border-primary-focus
-                bg-neutral-focus px-3 py-2 text-primary-content"
+                bg-neutral-focus px-3 py-2 text-accent"
                   value={registerEmail}
                   onChange={(e) => setRegisterEmail(e.target.value)}
                 />
@@ -277,7 +303,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
                 <label
                   htmlFor="register-password"
-                  className="mb-2 block font-semibold text-primary-content"
+                  className="mb-2 block font-semibold text-accent"
                 >
                   Password
                 </label>
@@ -285,14 +311,18 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                   type="password"
                   id="register-password"
                   className="mb-3 w-full rounded border border-primary-focus
-                bg-neutral-focus px-3 py-2 text-primary-content"
+                bg-neutral-focus px-3 py-2 text-accent"
                   value={registerPassword}
                   onChange={(e) => setRegisterPassword(e.target.value)}
                 />
 
+                {showLowPassword && (
+                  <p className="text-error mb-4">Heslo musí obsahovať aspoň jedno číslo</p>
+                )}
+
                 <label
                   htmlFor="register-password"
-                  className="mb-2 block font-semibold text-primary-content"
+                  className="mb-2 block font-semibold text-accent"
                 >
                   Repeat Password
                 </label>
@@ -300,7 +330,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                   type="password"
                   id="register-password"
                   className="mb-3 w-full rounded border border-primary-focus
-                bg-neutral-focus px-3 py-2 text-primary-content"
+                bg-neutral-focus px-3 py-2 text-accent"
                   value={registerPasswordRepeat}
                   onChange={(e) => setRegisterPasswordRepeat(e.target.value)}
                 />
@@ -308,8 +338,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                   <p className="text-error mb-4">Heslá sa nezhodujú</p>
                 )}
                 <button
-                  className="w-full rounded bg-primary
-                px-4 py-2 font-bold text-white hover:bg-primary-focus                "
+                  className="w-full rounded bg-accent
+                  px-4 py-2 font-bold text-accent-content hover:bg-primary-focus"
                   onClick={handleRegister}
                 >
                   Register
@@ -318,8 +348,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             )}
             <div className="modal-action">
               <button
-                className="btn rounded bg-primary
-                px-4 py-2 font-bold text-white hover:bg-primary-focus "
+                className="rounded bg-accent
+                px-4 py-2 font-bold text-accent-content hover:bg-primary-focus"
                 onClick={() => {
                   resetData(), onClose(false);
                 }}

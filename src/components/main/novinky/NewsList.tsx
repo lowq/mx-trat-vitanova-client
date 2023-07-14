@@ -64,12 +64,13 @@ const NewsList = () => {
   }, []);
 
   return (
+    <>
     <div
       className={`max-w-4xl mx-auto grid ${
         newsItems.length > 2 ? "grid-cols-2" : "grid-cols-1"
       }`}
       ref={componentRef}>
-      {newsItems.length !== 0 ? (
+      {newsItems.length !== 0 && (
         newsItems.map((newsItem, id) => (
           <div
             key={id}
@@ -79,7 +80,7 @@ const NewsList = () => {
             onClick={() => handleCardHover(id)}
           >
             <p>{moment(newsItem.date).format("DD.MM.YYYY")}</p>
-            <h3 className="text-2xl font-semibold mb-2 text-accent">
+            <h3 className="text-2xl font-semibold mb-2 text-primary-content">
               {newsItem.title}
             </h3>
             <p className="mb-4 h-36 overflow-hidden">{newsItem.content}</p>
@@ -98,12 +99,13 @@ const NewsList = () => {
           ))} */}
           </div>
         ))
-      ) : (
-        <h1 className="text-6xl m-10 text-center text-accent">
+      )}
+    </div>
+    {newsItems.length === 0 &&(        <h1 className="md:text-6xl text-4xl m-10 text-center text-primary-content">
           Zatiaľ sa tu nenachádazú žiadne novinky
         </h1>
       )}
-    </div>
+      </>
   );
 };
 

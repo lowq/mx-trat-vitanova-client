@@ -76,7 +76,7 @@ const PodujatiaTable = () => {
             <table className="table table-zebra">
               {/* head */}
               <thead>
-                <tr className="text-base text-accent">
+                <tr className="text-base text-primary-content">
                   <th>Názov</th>
                   <th>Dátum</th>
                   <th></th>
@@ -113,7 +113,7 @@ const PodujatiaTable = () => {
             <table className="table table-zebra">
               {/* head */}
               <thead>
-                <tr className="text-base text-accent">
+                <tr className="text-base text-primary-content">
                   <th>Názov</th>
                   <th>Dátum</th>
                   <th>Aktuálne prihlásených</th>
@@ -152,7 +152,7 @@ const PodujatiaTable = () => {
             </table>
           )
         ) : (
-          <h1 className="text-6xl m-10 text-center text-accent">
+          <h1 className="md:text-6xl text-4xl  m-10 text-center text-primary-content">
             Podujatia čoskoro
           </h1>
         )}

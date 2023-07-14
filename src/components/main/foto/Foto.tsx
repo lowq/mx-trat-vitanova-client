@@ -89,7 +89,7 @@ const Foto = () => {
           </button>
         </div>
       ) : (
-        <h1 className="text-6xl m-10 text-center text-accent">
+        <h1 className="md:text-6xl text-4xl  m-10 text-center text-primary-content">
           Zatiaľ sa tu nenachádazú žiadne fotky
         </h1>
       )}

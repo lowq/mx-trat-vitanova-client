@@ -5,6 +5,7 @@ import Avatar from 'react-nice-avatar'
 import Profile from "./profile/Profile";
 import { Link as SLink } from 'react-scroll';
 import { Link as RLink } from "react-router-dom";
+import axios from "axios";
 
 interface menuItem {
     name: string;
@@ -13,6 +14,7 @@ interface menuItem {
 
 const Navbar = () => {
   const targetDivRef = useRef<HTMLDivElement>(null);
+  const [messageCount, setmessageCount] = useState(0)
 
   const handleScrollToDiv = () => {
     if (targetDivRef.current) {
@@ -37,14 +39,33 @@ const Navbar = () => {
       behavior: 'smooth',
     });
   };
-  useEffect(() => {
-  document.addEventListener('wheel', handleMouseWheel, { passive: false });
 
-  return () => {
-    document.removeEventListener('wheel', handleMouseWheel);
-  };
-}, []);
-  
+  useEffect(() => {
+    fetchCount()
+
+    document.addEventListener('wheel', handleMouseWheel, { passive: false });
+
+    return () => {
+      document.removeEventListener('wheel', handleMouseWheel);
+    };
+  }, []);
+    
+  const fetchCount = () => {
+    if(userContext.role === 'ADMIN') {
+      axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/kontakt/count`, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${userContext.token}`
+        },
+      })
+      .then((response) => {
+        if (response.status === 200 && response.data.status === true) {
+            setmessageCount(response.data.data)
+        }
+      });
+    }
+  }
 
     const userContext = useContext(UserContext);
     
@@ -97,51 +118,50 @@ const Navbar = () => {
           element.classList.remove('opacity-30');
         }
       };
-
      
 
   return (
     <>
-      <header className="rounded-sm border-b border-accent bg-neutral text-justify font-mono">
+      <header className="rounded-sm border-b border-primary-content bg-neutral text-justify font-mono">
         <div className="md:mx-80 mx-10 flex content-center text-lg" >
           <ul className="hidden content-center p-5 md:flex">
             <li key="0" className="p-2">
-            <RLink className="rounded-box mx-2 bg-primary p-2 text-primary-content hover:bg-primary-focus"
+            <RLink className="rounded-box mx-2 bg-accent p-2 text-primary-content hover:bg-accent-focus"
                   to='/'> Domov </RLink>
             </li>
             {menus.map((menu, id) => (
               <li key={id} className="p-2">
                 <SLink 
-                  className="rounded-box mx-2 bg-primary p-2 text-primary-content hover:bg-primary-focus"
+                  className="rounded-box mx-2 bg-accent p-2 text-primary-content hover:bg-accent-focus"
                   to={menu.url} smooth={true} duration={500} onClick={handleScrollToDiv}
                 >
                   {menu.name}
                 </SLink>
               </li>
             ))}
-            {userContext.role === 'ADMIN' && (<li key="99" className="p-2"><RLink className="rounded-box mx-2 bg-primary p-2 text-primary-content hover:bg-primary-focus"
+            {userContext.role === 'ADMIN' && (<li key="99" className="p-2"><RLink className="rounded-box mx-2 bg-accent p-2 text-primary-content hover:bg-accent-focus"
                   to='/admin'> Admin </RLink></li>)}
           </ul>
           <details className="dropdown m-5 flex content-center md:hidden">
-            <summary className="rounded-box list-none bg-primary p-2 text-primary-content hover:bg-primary-focus">
+            <summary className="rounded-box list-none bg-accent p-2 text-primary-content hover:bg-accent-focus">
               Menu
             </summary>
             <ul className="w-52w dropdown-content menu rounded-box z-[1] bg-neutral p-5 shadow-transparent">
               <li key="0" className="p-2">
-              <RLink className="rounded-box mx-2 bg-primary p-2 text-primary-content hover:bg-primary-focus"
+              <RLink className="rounded-box mx-2 bg-accent p-2 text-primary-content hover:bg-accent-focus"
                     to='/'> Home </RLink>
               </li>
               {menus.map((menu, id) => (
                 <li key={id} className="my-2">
                   <SLink
-                    className="rounded-box bg-primary p-2 text-primary-content hover:bg-primary-focus"
+                    className="rounded-box bg-accent p-2 text-primary-content hover:bg-accent-focus"
                     to={menu.name} smooth={true} duration={500} onClick={handleScrollToDiv}
                   >
                     {menu.name}
                   </SLink>
                 </li>
               ))}
-              {userContext.role === 'ADMIN' && (<li key="99" className="p-2"><RLink className="rounded-box mx-2 bg-primary p-2 text-primary-content hover:bg-primary-focus"
+              {userContext.role === 'ADMIN' && (<li key="99" className="p-2"><RLink className="rounded-box mx-2 bg-accent p-2 text-primary-content hover:bg-accent-focus"
                   to='/admin'> Admin </RLink></li>)}
             </ul>
           </details>
@@ -157,7 +177,7 @@ const Navbar = () => {
             
             <div>  
                               <a
-                  className="rounded-box h-9 bg-primary p-2 text-primary-content hover:bg-primary-focus"
+                  className="rounded-box h-9 bg-accent p-2 text-primary-content hover:bg-accent-focus"
                   onClick={() => {
                     userContext.logout()
                   }}
@@ -170,7 +190,7 @@ const Navbar = () => {
             ) : (
                 <div className="my-2">
                     <a
-                  className="rounded-box h-9 bg-primary p-2 text-primary-content hover:bg-primary-focus"
+                  className="rounded-box h-9 bg-accent p-2 text-primary-content hover:bg-accent-focus"
                   onClick={() => {
                     //setLogin(!login);
                     openModal();
@@ -185,6 +205,12 @@ const Navbar = () => {
         {userContext.isLoggedIn ? (
           <Profile isOpen={isProfileOpen} onClose={closeProfile} />
         ) : (<Login isOpen={isModalOpen} onClose={closeModal} />)}
+
+          {messageCount > 0 && (
+            <h1 className="text-accent self-center text-center mb-2 text-xl">
+              V kontakt máš {messageCount} neprečítaných správ ako admin!
+            </h1>
+          )}
       </header>
       
     </>
