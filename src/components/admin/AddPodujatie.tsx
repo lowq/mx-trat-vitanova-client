@@ -13,7 +13,7 @@ const AddPodujatie: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
   const [name, setName] = useState<string>("");
   const [maxCapacity, setMaxCapacity] = useState<number>(0);
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<Date>({} as Date);
   const [description, setDescription] = useState<string>("");
 
   const handleNameChange = (e: any) => {
@@ -39,7 +39,8 @@ const AddPodujatie: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("maxCapacity", maxCapacity.toString());
-    formData.append("date", date.toString());
+    const dateLocal = new Date(date);
+    formData.append("date", dateLocal.toISOString());
     formData.append("description", description);
 
     try {

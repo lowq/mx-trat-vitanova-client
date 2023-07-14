@@ -14,7 +14,7 @@ const AddNovinka: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<Date>({} as Date);
   const [images, setImages] = useState<File[]>([]);
 
   const imageInput = useRef(null);
@@ -49,7 +49,8 @@ const AddNovinka: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("date", date.toDateString());
+    const dateLocal = new Date(date);
+    formData.append("date", dateLocal.toISOString());
     images.forEach((file) => {
       formData.append("images", file);
     });
