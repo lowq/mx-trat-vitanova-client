@@ -48,6 +48,22 @@ const Edit: React.FC<props> = ({brands, categories, isClose}) => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
+    if(category === "") 
+    {
+        toast.warning("Nenastavil si kategóriu");
+        return;
+    }
+    if(brand === "") 
+    {
+        toast.warning("Nenastavil si značku moto");
+        return;
+    }
+    if(model === "") 
+    {
+        toast.warning("Nenastavil si model moto");
+        return;
+    }
+
     try {
         const formdata = new FormData;
         formdata.append('id', userContext.userInfo.id.toString());
