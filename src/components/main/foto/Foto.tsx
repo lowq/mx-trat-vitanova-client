@@ -13,7 +13,6 @@ interface Foto {
 
 const Foto = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [cookies] = useCookies(["token"]);
   const [fotos, setFotos] = useState<Foto[]>([]);
 
   useEffect(() => {
