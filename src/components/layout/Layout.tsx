@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from './Navbar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SplashScreen from '../SplashScreen';
+import UserContext from '../../constans/userContext';
 
 interface Props {
     children: React.ReactNode;
@@ -32,6 +33,8 @@ const Layout = (props: Props) => {
     {day: "Sobota", time: "9:00 - 19:00"},
     {day: "Nedela", time: "9:00 - 18:00"},
   ]
+
+  const userContext = useContext(UserContext);
 
   useEffect(() => {
     const handleResize = () => {
@@ -74,10 +77,12 @@ const Layout = (props: Props) => {
       {isLoading && (<SplashScreen/>)}
       <Navbar/>
       <main className="">
-        {isMobile ? (<div className='mx-10 my-4'>
+        {isMobile ? (
+        userContext.role !== "ADMIN" && (<div className='mx-10 my-4'>
           <h1 className='text-center text-primary-content text-xl'>Trenigový čas</h1>
           {trainingTable}
-        </div>) : (<aside className="fixed left-0 top-25 mx-10 my-4 border-neutral border-opacity-30 rounded-md border-2">
+        </div>)) : (
+        <aside className="fixed left-0 top-25 mx-10 my-4 border-neutral border-opacity-30 rounded-md border-2">
           <h1 className='text-center text-primary-content text-xl'>Trenigový čas</h1>
           {trainingTable}
         </aside>)}

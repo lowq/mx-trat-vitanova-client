@@ -9,7 +9,7 @@ interface NewsItem {
   title: string;
   content: string;
   date: Date;
-  images: newsUrls[];
+  urslNews: newsUrls[];
 }
 
 interface newsUrls {
@@ -33,6 +33,10 @@ const NewsList = () => {
   useEffect(() => {
     fetchBlogItems();
   }, []);
+
+  useEffect(() => {
+    console.log(newsItems)
+  }, [newsItems]);
 
   const fetchBlogItems = async () => {
     try {
@@ -89,10 +93,10 @@ const NewsList = () => {
               {newsItem.title}
             </h3>
             <p className="mb-4 h-36 overflow-hidden">{newsItem.content}</p>
-            {hoveredItemId === id && newsItem.images?.length > 0 && (
+            {hoveredItemId === id && newsItem.urslNews?.length > 0 && (
               <div className="">
                 <ImageSlideshow
-                  images={newsItem.images ? (newsItem.images) : ([])}
+                  images={newsItem.urslNews ? (newsItem.urslNews) : ([])}
                   newName={newsItem.title}
                 />
               </div>

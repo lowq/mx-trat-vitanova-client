@@ -6,9 +6,10 @@ import { toast } from "react-toastify";
 
 interface Foto {
   description: string;
-  image: string;
+  url: string;
   date: Date;
 }
+
 
 const Foto = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -74,9 +75,9 @@ const Foto = () => {
               </h2>
             </div>
             <figure>
-              <img
-                src={`data:image/jpeg;base64,${fotos[currentImageIndex].image}`}
-                alt="Shoes"
+              <img className="rounder-xl"
+                src={fotos[currentImageIndex].url}
+                alt={fotos[currentImageIndex].description}
               />
             </figure>
           </div>

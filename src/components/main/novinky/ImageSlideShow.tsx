@@ -51,9 +51,9 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, newName }) => {
         </button>
         <span className='text-2xl text-primary-content'>{newName}</span>  
           <img
-            className='mx-auto h-full w-full shadow-xl fade-slide rounded-xl py-2 bg-neutral'
+            className='mx-auto h-full shadow-xl fade-slide rounded-xl bg-neutral border-2'
             src={fotos[currentImageIndex].url}
-            alt={fotos[currentImageIndex].id.toString()}
+            alt={newName}
           />
         <button
           className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-500 px-2 py-1 rounded z-50 mr-2"
