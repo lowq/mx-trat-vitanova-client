@@ -9,7 +9,12 @@ interface NewsItem {
   title: string;
   content: string;
   date: Date;
-  images: string[];
+  images: newsUrls[];
+}
+
+interface newsUrls {
+  id: number;
+  url: string;
 }
 
 const NewsList = () => {
@@ -67,7 +72,7 @@ const NewsList = () => {
     <>
     <div
       className={`max-w-4xl mx-auto grid ${
-        newsItems.length > 2 ? "grid-cols-2" : "grid-cols-1"
+        newsItems.length > 2 ? "md:grid-cols-2 grid-cols-1" : "grid-cols-1"
       }`}
       ref={componentRef}>
       {newsItems.length !== 0 && (
@@ -84,10 +89,10 @@ const NewsList = () => {
               {newsItem.title}
             </h3>
             <p className="mb-4 h-36 overflow-hidden">{newsItem.content}</p>
-            {hoveredItemId === id && newsItem.images.length > 0 && (
+            {hoveredItemId === id && newsItem.images?.length > 0 && (
               <div className="">
                 <ImageSlideshow
-                  images={newsItem.images}
+                  images={newsItem.images ? (newsItem.images) : ([])}
                   newName={newsItem.title}
                 />
               </div>
@@ -102,7 +107,7 @@ const NewsList = () => {
       )}
     </div>
     {newsItems.length === 0 &&(        <h1 className="md:text-6xl text-4xl m-10 text-center text-primary-content">
-          Zatiaľ sa tu nenachádazú žiadne novinky
+          Zatiaľ sa tu nenachádzajú žiadne novinky
         </h1>
       )}
       </>

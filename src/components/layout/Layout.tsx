@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SplashScreen from '../SplashScreen';
+import { resolvePath, useResolvedPath } from 'react-router-dom';
 
 interface Props {
     children: React.ReactNode;
@@ -13,6 +15,15 @@ interface dayTimeTraining {
 }
 
 const Layout = (props: Props) => {
+
+  const [isLoading, setisLoading] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setisLoading(false);
+    }, 1500);
+    return () => clearInterval(interval);
+  }, [])
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -61,6 +72,7 @@ const Layout = (props: Props) => {
   
   return (
     <>
+      {isLoading && (<SplashScreen/>)}
       <Navbar/>
       <main className="">
         {isMobile ? (<div className='mx-10 my-4'>

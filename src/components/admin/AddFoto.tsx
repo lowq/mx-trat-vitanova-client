@@ -28,28 +28,52 @@ const AddFoto: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     e.preventDefault();
 
     // Create a FormData object to store the form data
-    const formData = new FormData();
-    formData.append("description", description);
-    if (image) {
-      formData.append("image", image);
-    }
+    
+    
 
     try {
-      axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/fotos/`, formData, {
+        const formDataForCloudinary = new FormData();
+        if (image) {
+          formDataForCloudinary.append("image", image);
+        }
+        formDataForCloudinary.append("upload_preset", "r0ydgs0h");
+        formDataForCloudinary.append("cloud_name", "dz36uhdsn");
+        axios
+        .post(`https://api.cloudinary.com/v1_1/dz36uhdsn/image/upload`, formDataForCloudinary, {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${cookies.token}`,
           },
         })
         .then((response) => {
           if (response.status === 200) {
-            clearData();
+
+            const formData = new FormData();
+            formData.append("description", description);
+            formData.append("url", response.data.url);
+
+            try {
+              axios
+                .post(`${import.meta.env.VITE_BACKEND_URL}/fotos/`, formData, {
+                  headers: {
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${cookies.token}`,
+                  },
+                })
+                .then((response) => {
+                  if (response.status === 200) {
+                    clearData();
+                  }
+                });
+            } catch (error: any) {
+              toast.warning(error.message);
+            }
           }
-        });
+        })
     } catch (error: any) {
       toast.warning(error.message);
     }
+
+    
   };
 
   const clearData = () => {

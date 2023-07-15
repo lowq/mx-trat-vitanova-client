@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
 
 interface ImageSlideshowProps {
-  images: string[];
+  images: newsUrls[];
   newName: string;
+}
+
+interface newsUrls {
+  id: number;
+  url: string;
 }
 
 const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, newName }) => {
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [fotos, setFotos] = useState<string[]>([]);
+  const [fotos, setFotos] = useState<newsUrls[]>([]);
 
   useEffect(() => {
     setFotos(images);
@@ -47,8 +52,8 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, newName }) => {
         <span className='text-2xl text-primary-content'>{newName}</span>  
           <img
             className='mx-auto h-full w-full shadow-xl fade-slide rounded-xl py-2 bg-neutral'
-            src={`data:image/jpeg;base64,${fotos[currentImageIndex]}`}
-            alt="Shoes"
+            src={fotos[currentImageIndex].url}
+            alt={fotos[currentImageIndex].id.toString()}
           />
         <button
           className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-500 px-2 py-1 rounded z-50 mr-2"

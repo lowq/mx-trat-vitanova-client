@@ -45,16 +45,15 @@ const AddNovinka: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    // Create a FormData object to store the form data
+    let id = 0;
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
     const dateLocal = new Date(date);
+    if (isFinite(+dateLocal))
     formData.append("date", dateLocal.toISOString());
-    images.forEach((file) => {
-      formData.append("images", file);
-    });
-
+    
     try {
       axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/news/`, formData, {
@@ -65,12 +64,54 @@ const AddNovinka: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         })
         .then((response) => {
           if (response.status === 200) {
-            clearData();
+            id = response.data.id
           }
         });
     } catch (error: any) {
       toast.warning(error.message);
     }
+
+    try {
+      for (let index = 0; index < images.length; index++) {
+        const formDataForCloudinary = new FormData();
+        formDataForCloudinary.append("file", images[index]);
+        formDataForCloudinary.append("upload_preset", "r0ydgs0h");
+        formDataForCloudinary.append("cloud_name", "dz36uhdsn");
+        axios
+        .post(`https://api.cloudinary.com/v1_1/dz36uhdsn/image/upload`, formDataForCloudinary, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          if (response.status === 200) {
+
+            const newFormData = new FormData();
+            newFormData.append("url", response.data.url)
+            newFormData.append("id", id.toString())
+
+            axios
+              .post(`${import.meta.env.VITE_BACKEND_URL}/news/urls`, newFormData, {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                  Authorization: `Bearer ${cookies.token}`,
+                },
+              })
+              .then((response) => {
+                if (response.status === 200) {
+                  clearData();
+                }
+              });
+                }
+              });
+      }
+    } catch (error: any) {
+      toast.warning(error.message);
+    }
+    
+
+    // Create a FormData object to store the form data
+    
   };
 
   const clearData = () => {

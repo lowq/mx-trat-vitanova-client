@@ -5,7 +5,6 @@ import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 
 interface Foto {
-  id: number;
   description: string;
   image: string;
   date: Date;
