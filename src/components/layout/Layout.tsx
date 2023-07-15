@@ -3,7 +3,6 @@ import Navbar from './Navbar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SplashScreen from '../SplashScreen';
-import { resolvePath, useResolvedPath } from 'react-router-dom';
 
 interface Props {
     children: React.ReactNode;
