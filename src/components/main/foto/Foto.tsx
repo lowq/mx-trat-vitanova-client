@@ -45,7 +45,6 @@ const Foto = () => {
       axios
         .get(`${import.meta.env.VITE_BACKEND_URL}/fotos/`, {
           headers: {
-            Authorization: `Bearer ${cookies.token}`,
           },
         })
         .then((response) => {
