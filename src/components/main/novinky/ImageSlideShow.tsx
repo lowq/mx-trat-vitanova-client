@@ -30,13 +30,13 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, newName }) => {
   }, [fotos]);
 
   const goToNextImage = () => {
-    setCurrentImageIndex((prevIndex) => {
-      if(prevIndex !== fotos.length) {
-        (prevIndex + 1) % fotos.length
+    setCurrentImageIndex(
+      if(currentImageIndex !== fotos.length) {
+        currentImageIndex + 1
       } else {
         0
       }
-    });
+    );
   };
  /*
   const goToPreviousImage = () => {
