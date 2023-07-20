@@ -21,7 +21,7 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, newName }) => {
 
   useEffect(() => {
     if (fotos.length > 0) {
-      const interval = setInterval(goToNextImage, 3000);
+      const interval = setInterval(goToNextImage, 1500);
 
       return () => {
         clearInterval(interval);
@@ -43,24 +43,24 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, newName }) => {
     <>
     {fotos.length > 0 && (
       <div className="absolute md:w-1/2 md:h-1/2 w-screen transition-opacity rounded-xl border-primary-content border z-50 top-1/4 md:right-1/4 right-0 bg-neutral">
-        <button
+        {/*<button
           className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-500 px-2 py-1 rounded z-50 ml-2"
           onClick={goToPreviousImage}
         >
           Previous
-        </button>
+        </button>*/}
         <span className='text-2xl text-primary-content'>{newName}</span>  
           <img
             className='mx-auto w-full shadow-xl fade-slide rounded-xl bg-neutral border-2'
             src={fotos[currentImageIndex].url}
             alt={newName}
           />
-        <button
+        {/*<button
           className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-500 px-2 py-1 rounded z-50 mr-2"
           onClick={goToNextImage}
         >
           Next
-        </button>
+        </button>*/}
       </div>
     )}
   </>
